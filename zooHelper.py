@@ -72,7 +72,7 @@ def apdate():
         print("successfully updated")
 
 # save list to XML when program end
-def save():
+def save(file_name):
     if animals:
         root = ET.Element("animals")
         for animal in animals:
@@ -81,15 +81,15 @@ def save():
                 ET.SubElement(animal_elem, key).text = value
         
         tree = ET.ElementTree(root)
-        tree.write("animals.xml")
+        tree.write(file_name)
         print("Data saved to animals.xml")
     else:
         print("No data to save")
 
 # load list from XML (if exist) when program starts
-def load():
-    if os.path.exists("animals.xml"):
-        tree = ET.parse("animals.xml")
+def load(file_name):
+    if os.path.exists(file_name):
+        tree = ET.parse(file_name)
         root = tree.getroot()
         animals.clear()  # Clear the existing list before loading
 
